@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row flex-items-xs-center">
+    <div class="col-xs-12">
+      <h1>Mottovorschläge O-Phase SoSe 17</h1>
+      <p>Wilkommen!
+        <br>Hier kannst Du Deinen Mottovorschlag für die O-Phase im Sommersemester 2017 einreichen.</p>
+      <app-vorschlag-form [vorschlagsList]="vorschlagList"></app-vorschlag-form>
+    </div>
+  </div>
+  <div class="row flex-items-xs-center">
+    <div class="col-xs-12">
+      <h2 class="mt-2">
+        Bisherige Vorschläge
+      </h2>
+    </div>
+
+  </div>
+  <div class="row flex-items-xs-center">
+    <div class="col-xs-12 flex-column d-flex">
+      <ul class="list-group mt-1 p-2">
+        <li class="list-group-item" *ngFor="let vorschlag of vorschlagList">
+          {{vorschlag.motto}}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

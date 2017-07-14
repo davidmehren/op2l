@@ -1,0 +1,154 @@
+<form (ngSubmit)="onSubmit($event)" #anmeldungForm="ngForm" *ngIf="submitState == 0">
+  <div class="form-group">
+    <label for="first_name">Vorname</label>
+    <input required class="form-control" id="first_name" name="first_name" placeholder="Max"
+           [(ngModel)]="model.first_name">
+  </div>
+  <div class="form-group">
+    <label for="last_name">Nachname</label>
+    <input required class="form-control" id="last_name" name="last_name" placeholder="Mustermann"
+           [(ngModel)]="model.last_name">
+  </div>
+  <div class="form-group">
+    <label for="email">E-Mail</label>
+    <input required type="email" class="form-control" id="email" name="email" placeholder="mail@example.com"
+           [(ngModel)]="model.available_communication.email">
+  </div>
+  <div class="form-group">
+    <label for="telephone">Handynummer</label>
+    <input required type="tel" class="form-control" id="telephone" name="telephone" placeholder="+4917211223344"
+           [(ngModel)]="model.available_communication.telephone">
+    <small class="form-text text-muted">Bitte gib hier eine Telefonnummer an, unter der du während der O-Phase
+      erreichbar bist.
+    </small>
+    <div class="form-check mt-1">
+      <label class="form-check-label">
+        <input type="checkbox" name="has_telegram" class="form-check-input"
+               [(ngModel)]="model.available_communication.telegram">
+        Ich habe Telegram
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="languages">Fremdsprachenkenntnisse</label>
+    <select required multiple name="languages" id="languages" class="form-control" [(ngModel)]="model.languages">
+      <option *ngFor="let lang of langList" [value]="lang.short">{{lang.name}}</option>
+    </select>
+    <small class="form-text text-muted">
+      Falls Du eine Sprache sprichst die hier nicht aufgeführt ist, erwähne das bitte im Feld "Weitere Bemerkungen"
+      weiter unten.
+      <br>Dies ist ein Multiselect-Feld. Mit der Strg- bzw. Command-Taste kannst Du mehrere Optionen auswählen.
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="is_helper" class="form-check-label">
+      <input type="checkbox" class="form-check-input" id="is_helper" name="is_helper" [(ngModel)]="model.is_helper">
+      Ich möchte nur helfen.
+    </label>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Ich war schon</span>
+      <input type="number" class="form-control" placeholder="0" id="prev_count" name="prev_count" min="0"
+             [(ngModel)]="model.prev_count">
+      <span class="input-group-addon">mal Teamer.</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="can_present">Ich kann folgende Nebenfächer vorstellen:</label>
+    <select multiple class="form-control" id="can_present" name="can_present" [(ngModel)]="model.can_present">
+      <option *ngFor="let item of subjectList" [value]="item.name">{{item.name}}</option>
+    </select>
+    <small class="form-text text-muted">Dies ist ein Multiselect-Feld. Mit der Strg- bzw. Command-Taste kannst Du
+      mehrere Optionen auswählen.
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="food-type">Ernährung</label>
+    <select required class="form-control" id="food-type" name="food-type" [(ngModel)]="model.food.type">
+      <option *ngFor="let item of foodTypeList" [value]="item.type">{{item.type}}</option>
+    </select>
+    <input class="form-control form-control-sm mt-1" name="food-comment" id="food-comment"
+           [(ngModel)]="model.food.comment"
+           placeholder="Hinweise zur Ernährung">
+  </div>
+  <div class="form-group">
+    <label for="shirt-size">T-Shirt Größe</label>
+    <div class="input-group">
+      <select required class="form-control" id="shirt-size" name="shirt-size" [(ngModel)]="model.clothes.size">
+        <option *ngFor="let item of clothesSizeList" [value]="item.size">{{item.size}}</option>
+      </select>
+      <span class="input-group-addon">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" name="clothes-girlie" [(ngModel)]="model.clothes.girlie">
+          Girlie-Shirt
+        </label>
+      </span>
+    </div>
+  </div>
+  <div class="form-group" *ngIf="enableTeamerTrip">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name="wants_trip" [(ngModel)]="model.wants_trip">
+      Ich möchte an der Teamerfahrt teilnehmen.
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name="has_training" [(ngModel)]="model.has_training">
+      Ich habe bereits an einem Kommunikationskurs teilgenommen.
+    </label>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-12">Ich kann ein Auto zur Verfügung stellen...</label>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" *ngIf="enableTeamerTrip">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" name="has_car_ophase" [(ngModel)]="model.has_car.trip">
+          ...während der Teamerfahrt.
+        </label>
+      </div>
+      <div class="col-sm-6">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" name="hat_car_ophase" [(ngModel)]="model.has_car.ophase">
+          ...während der O-Phase
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="workgroups">Ich möchte in folgenden Arbeitskreisen mitarbeiten:</label>
+    <select multiple class="form-control" id="workgroups" name="workgroups" [(ngModel)]="model.workgroups">
+      <option *ngFor="let item of workGroupList" [value]="item.name">{{item.name}}</option>
+    </select>
+    <small class="form-text text-muted">Dies ist ein Multiselect-Feld. Mit der Strg- bzw. Command-Taste kannst Du
+      mehrere Optionen auswählen.
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="partner_wish">Mitteamerwünsche</label>
+    <textarea class="form-control" id="partner_wish" name="partner_wish" rows="2"
+              [(ngModel)]="model.partner_wish"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="comment">Weitere Bemerkungen</label>
+    <textarea class="form-control" id="comment" rows="3" name="comment" [(ngModel)]="model.comment"></textarea>
+  </div>
+  <re-captcha required [siteKey]="siteKey" name="captcha" [(ngModel)]="model.captcha"
+              style="border-left-width: 0"></re-captcha>
+  <button [disabled]="!anmeldungForm.form.valid" class="btn btn-primary mt-1" *ngIf="!loading">Absenden</button>
+  <app-pacman-loader *ngIf="loading"></app-pacman-loader>
+</form>
+<div class="alert alert-success" *ngIf="submitState == 1">
+  Deine Anmeldung wurde erfolgreich gespeichert.
+</div>
+<div class="alert alert-warning" *ngIf="submitState == 2">
+  Eine Anmeldung mit dieser E-Mail-Adresse ist bereits vorhanden.
+</div>
+<div class="alert alert-danger" *ngIf="submitState == 3">
+  Ein Fehler beim Speichern der Anmeldung ist aufgetreten.
+</div>
+<button class="btn btn-primary" *ngIf="submitState != 0" (click)="resetForm()">
+  Zurück
+</button>

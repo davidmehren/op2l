@@ -1,0 +1,145 @@
+.pacman {
+  margin: 5px 5px;
+}
+
+.pacman-top {
+  background-color: #373a3c;
+  height: 20px;
+  width: 40px;
+  border-radius: 20px 20px 0 0;
+  animation: spin1 0.5s infinite linear;
+}
+
+.pacman-bottom {
+  background-color: #373a3c;
+  height: 20px;
+  width: 40px;
+  border-radius: 0 0 20px 20px;
+  animation: spin2 0.5s infinite linear;
+}
+
+/* Animation*/
+
+@keyframes spin1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+
+}
+
+@keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+}
+
+@-moz-keyframes spin1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+
+}
+
+@-moz-keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+}
+
+@-webkit-keyframes spin1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+
+}
+
+@-webkit-keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+}
+
+@keyframes eat {
+  0% {
+    box-shadow: 100px 65px 0 0 white,
+    300px 65px 0 0 white,
+    500px 65px 0 0 white,
+    700px 65px 0 0 white,
+    900px 65px 0 0 white,
+    1100px 65px 0 0 white,
+    1300px 65px 0 0 white;
+  }
+
+  100% {
+    box-shadow: 0 65px 0 0 white,
+    100px 65px 0 0 white,
+    300px 65px 0 0 white,
+    500px 65px 0 0 white,
+    700px 65px 0 0 white,
+    900px 65px 0 0 white,
+    1100px 65px 0 0 white;
+  }
+}
+
+@-moz-keyframes eat {
+  0% {
+    box-shadow: 100px 65px 0 0 white,
+    300px 65px 0 0 white,
+    500px 65px 0 0 white,
+    700px 65px 0 0 white,
+    900px 65px 0 0 white,
+    1100px 65px 0 0 white,
+    1300px 65px 0 0 white;
+  }
+
+  100% {
+    box-shadow: 0 65px 0 0 white,
+    100px 65px 0 0 white,
+    300px 65px 0 0 white,
+    500px 65px 0 0 white,
+    700px 65px 0 0 white,
+    900px 65px 0 0 white,
+    1100px 65px 0 0 white;
+  }
+}
+
+@-webkit-keyframes eat {
+  0% {
+    box-shadow: 100px 65px 0 0 white,
+    300px 65px 0 0 white,
+    500px 65px 0 0 white,
+    700px 65px 0 0 white,
+    900px 65px 0 0 white,
+    1100px 65px 0 0 white,
+    1300px 65px 0 0 white;
+  }
+
+  100% {
+    box-shadow: 0 65px 0 0 white,
+    100px 65px 0 0 white,
+    300px 65px 0 0 white,
+    500px 65px 0 0 white,
+    700px 65px 0 0 white,
+    900px 65px 0 0 white,
+    1100px 65px 0 0 white;
+  }
+}
+

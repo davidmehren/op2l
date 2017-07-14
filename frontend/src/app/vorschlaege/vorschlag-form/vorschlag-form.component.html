@@ -1,0 +1,56 @@
+<form (ngSubmit)="onSubmit()" #vorschlagForm="ngForm" *ngIf="submitState == 0">
+  <div class="form-group">
+    <label for="motto">Dein Mottovorschlag:</label>
+    <input id="motto" name="motto" placeholder="Nicht mein Problem" maxlength="512" required class="form-control"
+           [(ngModel)]="model.motto">
+  </div>
+  <div class="form-group">
+    <label for="name">
+      Dein Name <i>(optional)</i>
+    </label>
+    <input id="name" name="name" placeholder="Max Mustermann" maxlength="256" class="form-control"
+           [(ngModel)]="model.name">
+
+  </div>
+  <accordion [closeOthers]="true">
+    <accordion-group heading="Wichtige Hinweise">
+      <ul>
+        <li>Mottovorschläge dürfen gerne Anspielungen auf Filme, Bücher etc. enthalten.</li>
+        <li>Mottovorschläge müssen Safe For Work sein. Die Bewertung hierzu obliegt der Orga.</li>
+        <li>Es besteht kein Anspruch auf Verwendung eines hier eingereichten Vorschlags durch die O-Phasen Orga.</li>
+        <li>Wer seinen Mottovorschlag hier einreicht, stimmt einer möglichen Verwendung im Rahmen der O-Phase zu. (Wer
+          hätte das gedacht.)
+        </li>
+        <li>Wer den Mottovorschlag eines Dritten einreicht, bestätigt mit seiner Einreichung das er entsprechend die
+          Zustimmung dazu eingeholt hat.
+        </li>
+      </ul>
+    </accordion-group>
+    <accordion-group heading="Weniger wichtige Hinweise">
+      <ul>
+        <li>Diese Webseite ist rate limited. Versuche die Datenbank vollzuspammen sind zu unterlassen.</li>
+        <li>Wer es trotzdem versucht, muss mit dem Unmut des Serverbetreibers rechnen.</li>
+      </ul>
+    </accordion-group>
+  </accordion>
+  <div class="form-check">
+    <label for="read-hints" class="form-check-label">
+      <input name="read-hints" type="checkbox" id="read-hints" required ngModel class="form-check-input">&nbsp;Ich habe
+      die Hinweise gelesen und beachtet
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!vorschlagForm.form.valid" class="btn btn-primary">Absenden</button>
+</form>
+<div class="alert alert-success" *ngIf="submitState == 1">
+  Das Motto {{model.motto}} wurde erfolgreich gespeichert
+</div>
+<div class="alert alert-warning" *ngIf="submitState == 2">
+  Das Motto {{ model.motto }} ist bereits vorhanden.
+</div>
+<div class="alert alert-danger" *ngIf="submitState == 3">
+  Ein Fehler beim Speichern des Mottos ist aufgetreten.
+</div>
+<button class="btn btn-primary" *ngIf="submitState != 0" (click)="resetForm()">
+  Zurück
+</button>

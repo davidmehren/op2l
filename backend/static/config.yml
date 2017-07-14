@@ -1,0 +1,9 @@
+---
+recaptchaSiteKey: "foobar"
+recpatchaSecretKey: "barfoo"
+motto_suggestions:
+  enabled: true
+teamer_registration:
+  enabled: true
+teamer_trip:
+  enabled: true

@@ -1,0 +1,58 @@
+<div *ngIf="isEditModalShown" [config]="{ show: true }" (onHidden)="onEditHidden()" bsModal #editModal="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Person bearbeiten</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideEditModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-person-edit [person]="personToEdit" [modal]="editModal"></app-person-edit>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isDeleteModalShown" [config]="{ show: true }" (onHidden)="onDeleteHidden()" bsModal #deleteModal="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Wirklich löschen?</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideDeleteModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{personToEdit.first_name}} {{personToEdit.last_name}} wird endgültig gelöscht!</p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success">Fortfahren</button>
+        <button class="btn btn-danger">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="personTableWrapper">
+  <div class="row">
+    <div class="col-sm-12">
+      <table id="personTable" class="table table-bordered" datatable [dtOptions]="dtOptions"
+             [dtTrigger]="dtTrigger">
+        <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Helfer?</th>
+          <th>Button</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

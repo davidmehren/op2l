@@ -1,0 +1,19 @@
+{
+  "name": "op2l",
+  "version": "0.1.0",
+  "repository": "https://github.com/davidmehren/op2l",
+  "author": "David Mehren <dmehren1@gmail.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "yarn run build:backend && yarn run build:frontend && yarn run build:mkdir && yarn run build:copy && yarn run build:appversion && yarn run build:mkzip",
+    "build:clean": "rm -rf backend/build && rm -rf frontend/dist",
+    "build:backend": "tsc -p backend && cd backend && rm **/*.map && yarn licenses generate-disclaimer > licenses.txt",
+    "build:frontend": "cd frontend && ng build -prod -aot && yarn licenses generate-disclaimer > licenses.txt",
+    "build:mkdir": "rm -rf $npm_package_name-release-* && mkdir $npm_package_name-release-$npm_package_version",
+    "build:copy": "yarn run build:copydirs && yarn run build:copystatic",
+    "build:copydirs": "cp -r backend/build $npm_package_name-release-$npm_package_version/backend && cp -r frontend/dist $npm_package_name-release-$npm_package_version/frontend",
+    "build:copystatic": "cp backend/static/* $npm_package_name-release-$npm_package_version/backend && cp backend/package.json $npm_package_name-release-$npm_package_version/backend",
+    "build:appversion": "find $npm_package_name-release-$npm_package_version -type f -print0|xargs -0 sed -i -e s/##APP_VERSION##/$npm_package_version/g",
+    "build:mkzip": "zip -r -9 -q $npm_package_name-release-$npm_package_version.zip $npm_package_name-release-$npm_package_version/*"
+  }
+}

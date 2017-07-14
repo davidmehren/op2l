@@ -1,0 +1,48 @@
+{
+  "name": "op2l-backend",
+  "version": "##APP_VERSION##",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "connect-mongo": "^1.3.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "express-winston": "^2.4.0",
+    "js-yaml": "^3.9.0",
+    "monk": "^6.0.1",
+    "multer": "^1.3.0",
+    "recaptcha2": "^1.3.2",
+    "winston": "^2.3.1",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/body-parser": "1.16.4",
+    "@types/cors": "2.8.1",
+    "@types/csv-parse": "^1.1.8",
+    "@types/express": "^4.0.36",
+    "@types/express-serve-static-core": "^4.0.49",
+    "@types/express-session": "^1.15.1",
+    "@types/jasmine": "^2.5.53",
+    "@types/js-yaml": "^3.9.0",
+    "@types/mime": "1.3.1",
+    "@types/monk": "^1.0.5",
+    "@types/multer": "1.3.2",
+    "@types/node": "^8.0.13",
+    "@types/recaptcha": "0.0.27",
+    "@types/serve-static": "^1.7.31",
+    "@types/winston": "2.3.3",
+    "@types/yargs": "^8.0.1",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.1"
+  }
+}

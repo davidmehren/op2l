@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  padding-top: 5rem;
+}
+
+.footer {
+  font-size: 85%;
+  text-align: center;
+  background-color: #f5f5f5;
+  padding: 1rem 0;
+  margin-top: 1rem;
+}
+
+.footer p {
+  margin-bottom: 0;
+}
+
+.list-group-item {
+  word-break: break-all;
+}
+
+.ng-valid[required], .ng-valid.required {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}

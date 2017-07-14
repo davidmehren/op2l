@@ -1,0 +1,9 @@
+---
+recaptchaSiteKey: "changeme"
+recpatchaSecretKey: "changeme"
+motto_suggestions:
+  enabled: true
+teamer_registration:
+  enabled: true
+teamer_trip:
+  enabled: true
