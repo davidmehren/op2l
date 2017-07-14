@@ -18,7 +18,8 @@ export class Language {
     new Language("Russisch", "RU"),
     new Language("Japanisch", "JA"),
     new Language("Polnisch", "PL"),
-    new Language("Lojban", "JBO")
+    new Language("Lojban", "JBO"),
+    new Language("Klingonisch", "TLH")
   ];
 
 
