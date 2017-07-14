@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="languages">Fremdsprachenkenntnisse</label>
+    <label for="languages">Sprachkenntnisse</label>
     <select required multiple name="languages" id="languages" class="form-control" [(ngModel)]="model.languages">
       <option *ngFor="let lang of langList" [value]="lang.short">{{lang.name}}</option>
     </select>
