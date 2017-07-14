@@ -1,0 +1,38 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="backend" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="build/server.js" working-dir="$PROJECT_DIR$/backend">
+    <envs>
+      <env name="DEBUG" value="true" />
+      <env name="DB_NAME" value="op-dev" />
+      <env name="NODE_ENV" value="development" />
+      <env name="PORT" value="5000" />
+    </envs>
+    <browser url="http://localhost:3000/" />
+    <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
+      <option name="envVars">
+        <list />
+      </option>
+      <option name="extraHosts">
+        <list />
+      </option>
+      <option name="links">
+        <list />
+      </option>
+      <option name="networkDisabled" value="false" />
+      <option name="networkMode" value="bridge" />
+      <option name="portBindings">
+        <list />
+      </option>
+      <option name="publishAllPorts" value="false" />
+      <option name="version" value="1" />
+      <option name="volumeBindings">
+        <list />
+      </option>
+    </EXTENSION>
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
+      <browser url="http://localhost:3000/" />
+    </EXTENSION>
+    <method>
+      <option name="TypeScript.Before.Run" enabled="true" FAIL_ON_ERROR="true" CONFIG_PATH="$PROJECT_DIR$/backend/tsconfig.json" />
+    </method>
+  </configuration>
+</component>
