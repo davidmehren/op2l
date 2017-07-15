@@ -9,24 +9,28 @@ import loginRouter = require("./routes/LoginRouter");
 import configRouter = require("./routes/ConfigRouter");
 import adminRouter = require("./routes/AdminRouter");
 
+// tslint:disable-next-line:no-var-requires
 const expressWinston = require("express-winston");
-import {Config} from "./model/Config";
+// tslint:disable-next-line:no-var-requires
+const monk = require("monk");
+import * as connect_mongo from "connect-mongo";
+import * as session from "express-session";
 import * as fs from "fs";
+
+import {Config} from "./model/Config";
 import {PersonRouter} from "./routes/PersonRouter";
 
-const monk = require("monk");
 const dbUrl = "localhost:27017/";
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = connect_mongo(session);
 export let db: any;
 export let config: Config;
 const logger = new winston.Logger({
     transports: [
         new winston.transports.Console({
             colorize: true,
-            level: process.env.DEBUG === "true" ? "debug" : "warn"
-        })
-    ]
+            level: process.env.DEBUG === "true" ? "debug" : "warn",
+        }),
+    ],
 });
 
 export class OPhaseApi {
@@ -44,47 +48,47 @@ export class OPhaseApi {
         logger.info("Configuring middleware...");
         app.use(bodyParser.json());
         app.use(bodyParser.text({
-            type: "application/xml"
+            type: "application/xml",
         }));
         if (process.env.DEBUG === "true") {
             app.use(cors());
         }
-        let dbName = process.env.DB_NAME;
+        const dbName = process.env.DB_NAME;
         app.use(session({
-            store: new MongoStore({
-                url: "mongodb://" + dbUrl + dbName
-            }),
             cookie: {
-                secure: !process.env.DEBUG
+                maxAge: 1000 * 60 * 60,
+                secure: !process.env.DEBUG,
             },
-            // TODO: Read from environment
-            secret: "sicher123",
-            unset: "destroy",
             resave: false,
             saveUninitialized: false,
-            maxAge: 1000 * 60 * 60
+            secret: "sicher123",
+            store: new MongoStore({
+                url: "mongodb://" + dbUrl + dbName,
+            }),
+            // TODO: Read from environment
+            unset: "destroy",
         }));
     }
 
     private static configureLogger(app: express.Express) {
         logger.info("Configuring express logger...");
         app.use(expressWinston.logger({
+            colorize: true,
+            expressFormat: true,
+            meta: true,
             transports: [
                 new winston.transports.Console({
-                    json: false,
                     colorize: true,
-                    level: process.env.DEBUG === "true" ? "debug" : "warn"
-                })
+                    json: false,
+                    level: process.env.DEBUG === "true" ? "debug" : "warn",
+                }),
             ],
-            meta: true,
-            expressFormat: true,
-            colorize: true
         }));
     }
 
     private static connectDB() {
-        let dbName = process.env.DB_NAME;
-        if (dbName == null) {
+        const dbName = process.env.DB_NAME;
+        if (dbName === null) {
             logger.error("DB_NAME environment variable not defined!");
             logger.error("Could not connect to MongoDB!");
             process.exit(1);
@@ -102,7 +106,7 @@ export class OPhaseApi {
 
     private static async loadConfig() {
         try {
-            let conf = yaml.safeLoad(fs.readFileSync("config.yml", "utf8"));
+            const conf = yaml.safeLoad(fs.readFileSync("config.yml", "utf8"));
             logger.info("Successfully loaded config file.");
             logger.debug(JSON.stringify(conf, null, 4));
             config = conf;
@@ -116,6 +120,11 @@ export class OPhaseApi {
         logger.info("configuring error handling...");
     }
 
+    constructor(private app: express.Express, private port: number, private host: string) {
+        logger.info("Creating OPhaseApi object...");
+        logger.warn(`Running in ${process.env.NODE_ENV} with DB ${process.env.DB_NAME}`);
+    }
+
     public async initializeAPI() {
         OPhaseApi.configureLogger(this.app);
         await OPhaseApi.connectDB();
@@ -123,11 +132,6 @@ export class OPhaseApi {
         OPhaseApi.configureMiddleware(this.app);
         OPhaseApi.configureErrorHandler();
         OPhaseApi.configureRoutes(this.app);
-    }
-
-    constructor(private app: express.Express, private port: number, private host: string) {
-        logger.info("Creating OPhaseApi object...");
-        logger.warn(`Running in ${process.env.NODE_ENV} with DB ${process.env.DB_NAME}`);
     }
 
     public run() {

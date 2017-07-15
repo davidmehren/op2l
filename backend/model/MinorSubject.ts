@@ -1,20 +1,4 @@
 export class MinorSubject {
-    name: string;
-
-
-    constructor(name: string) {
-        this.name = name;
-    }
-
-    public static isSubject(s: string) {
-        for (let i = 0; i < MinorSubject.subjectList.length; i++) {
-            if (MinorSubject.subjectList[i].name == s) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static subjectList = [
         new MinorSubject("Architektur"),
         new MinorSubject("Chemie"),
@@ -33,4 +17,19 @@ export class MinorSubject {
         new MinorSubject("Theoretische Medizin"),
         new MinorSubject("Wirtschaftswissenschaften"),
     ];
+
+    public static isSubject(s: string) {
+        for (const subject of MinorSubject.subjectList) {
+            if (subject.name === s) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
 }

@@ -1,5 +1,5 @@
-import {UserType} from "../model/UserTypes";
 import {isNullOrUndefined} from "util";
+import {UserType} from "../model/UserTypes";
 
 export function isAdmin(request: any) {
     if (isNullOrUndefined(request.session.isLoggedIn)) {

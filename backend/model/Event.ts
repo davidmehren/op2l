@@ -1,14 +1,14 @@
-import {Room} from "./Room";
+import {Group} from "./Group";
 import {Item} from "./Item";
 import {Person} from "./Person";
-import {Group} from "./Group";
+import {Room} from "./Room";
 
 export class Event {
-    start_date: Date;
-    end_date: Date;
-    rooms: Array<Room>;
-    room_text: string;
-    used_items: Array<Item>;
-    used_groups: Array<Group>;
-    used_persons: Array<Person>;
+    public startDate: Date;
+    public endDate: Date;
+    public rooms: Room[];
+    public roomText: string;
+    public usedItems: Item[];
+    public usedGroups: Group[];
+    public usedPersons: Person[];
 }

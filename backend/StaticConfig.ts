@@ -1,3 +1,3 @@
 export class StaticConfig {
-    static version = "##APP_VERSION##";
+    public static version = "##APP_VERSION##";
 }

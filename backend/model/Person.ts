@@ -1,48 +1,31 @@
-import {Communication} from "./Communication";
-import {Group} from "./Group";
-import {Food} from "./Food";
-import {Clothes} from "./Clothes";
-import {db} from "../application";
 import {Response} from "express";
+import {db} from "../application";
+import {Clothes} from "./Clothes";
+import {Communication} from "./Communication";
+import {Food} from "./Food";
+import {Group} from "./Group";
 import {MinorSubject} from "./MinorSubject";
 
 export class Person {
-    first_name: string;
-    last_name: string;
-    available_communication: Communication;
-    languages: Array<string>;
-    is_helper: boolean;
-    prev_count: number;
-    can_present: Array<MinorSubject>;
-    food: Food;
-    clothes: Clothes;
-    has_car: {
-        trip: boolean;
-        ophase: boolean;
-    };
-    wants_trip: boolean;
-    has_training: boolean;
-    workgroups: Array<Group>;
-    partner_wish: string;
-    comment: string;
-
     /**
-     * Creates Person object from JSON and checks if all fields are set. If not, automatically send error response and reject promise.
+     * Creates Person object from JSON and checks if all fields are set.
+     * If not, automatically send error response and reject promise.
      * @param body Express.Request body
      * @param res Express.Response
      * @returns {Promise<any>}
      */
-    static async from_json(body: any, res: Response) {
+    public static async from_json(body: any, res: Response) {
         return new Promise(async (resolve, reject) => {
-            if (body.first_name === "") {
+            if (body.firstName === "") {
                 reject();
-                res.status(900).send("first_name");
+                res.status(900).send("firstName");
             }
-            if (body.last_name === "") {
+            if (body.lastName === "") {
                 reject();
-                res.status(900).send("last_name");
+                res.status(900).send("lastName");
             }
-            let items = await db.get("persons").find({"available_communication.email": body.available_communication.email});
+            const items = await db.get("persons")
+                .find({"available_communication.email": body.availableCommunication.email});
             if (items.length > 0) {
                 reject();
                 res.status(901).send("email");
@@ -51,23 +34,23 @@ export class Person {
                 reject();
                 res.status(900).send("languages");
             }
-            if (body.is_helper == null) {
+            if (body.isHelper == null) {
                 reject();
-                res.status(900).send("is_helper");
+                res.status(900).send("isHelper");
             }
-            if ((body.prev_count == null) || (body.prev_count < 0)) {
+            if ((body.prevCount == null) || (body.prevCount < 0)) {
                 reject();
-                res.status(900).send("prev_count");
+                res.status(900).send("prevCount");
             }
-            let can_present_faulty = false;
-            for (let i = 0; i < body.can_present.length; i++) {
-                if (!MinorSubject.isSubject(body.can_present[i])) {
-                    can_present_faulty = true;
+            let canPresentFaulty = false;
+            for (const subject of body.canPresent) {
+                if (!MinorSubject.isSubject(subject)) {
+                    canPresentFaulty = true;
                 }
             }
-            if (can_present_faulty) {
+            if (canPresentFaulty) {
                 reject();
-                res.status(902).send("can_present");
+                res.status(902).send("canPresent");
             }
             if (body.food.type == null) {
                 reject();
@@ -81,23 +64,42 @@ export class Person {
                 reject();
                 res.status(900).send("girlie");
             }
-            if (body.has_car.trip == null) {
+            if (body.hasCar.trip == null) {
                 reject();
                 res.status(900).send("car.trip");
             }
-            if (body.has_car.ophase == null) {
+            if (body.hasCar.ophase == null) {
                 reject();
                 res.status(900).send("car.ophase");
             }
-            if (body.wants_trip == null) {
+            if (body.wantsTrip == null) {
                 reject();
-                res.status(900).send("wants_trip");
+                res.status(900).send("wantsTrip");
             }
-            if (body.has_training == null) {
+            if (body.hasTraining == null) {
                 reject();
-                res.status(900).send("has_training");
+                res.status(900).send("hasTraining");
             }
             resolve(body);
         });
     }
+
+    public firstName: string;
+    public lastName: string;
+    public availableCommunication: Communication;
+    public languages: string[];
+    public isHelper: boolean;
+    public prevCount: number;
+    public canPresent: MinorSubject[];
+    public food: Food;
+    public clothes: Clothes;
+    public hasCar: {
+        trip: boolean;
+        ophase: boolean;
+    };
+    public wantsTrip: boolean;
+    public hasTraining: boolean;
+    public workgroups: Group[];
+    public partnerWish: string;
+    public comment: string;
 }

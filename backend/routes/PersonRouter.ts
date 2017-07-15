@@ -1,35 +1,34 @@
 import * as express from "express";
 import {Router} from "express";
-import {config, db} from "../application";
-import {Person} from "../model/Person";
-import {isAdmin} from "../lib/LoginCheck";
 import {isNullOrUndefined} from "util";
+import {config, db} from "../application";
+import {isAdmin} from "../lib/LoginCheck";
+import {Person} from "../model/Person";
 
 export class PersonRouter {
-    ReCaptcha = require("recaptcha2");
-    recaptcha: any;
-
     public personRouter: Router;
+
+    private ReCaptcha = require("recaptcha2");
+    private recaptcha: any;
 
     constructor() {
         this.personRouter = express.Router();
         this.recaptcha = new this.ReCaptcha({
+            secretKey: config.recpatchaSecretKey,
             siteKey: config.recaptchaSiteKey,
-            secretKey: config.recpatchaSecretKey
         });
-
 
         this.personRouter.get("/me", async (request: any, response: express.Response) => {
             response.json(request.dbUser);
         });
 
         this.personRouter.post("/", async (request: any, response: express.Response) => {
-            let personDb = db.get("persons");
+            const personDb = db.get("persons");
             this.recaptcha.validate(request.body.captcha)
                 .then(async () => {
-                    let person: any = await Person.from_json(request.body, response);
+                    const person: any = await Person.from_json(request.body, response);
                     delete person.captcha;
-                    let result = await personDb.insert(person);
+                    const result = await personDb.insert(person);
                     response.send(result);
                 })
                 .catch(() => {
@@ -42,11 +41,12 @@ export class PersonRouter {
                 return response.sendStatus(401);
             }
             if (!isNullOrUndefined(request.body)) {
-                let personDb = db.get("persons");
+                const personDb = db.get("persons");
                 // Try to find the object in the database.
-                let person = await personDb.findOne({_id: request.body._id});
-                if (person == null)
+                const person = await personDb.findOne({_id: request.body._id});
+                if (person == null) {
                     return response.sendStatus(404);
+                }
                 personDb.update({_id: request.body._id}, request.body);
                 return response.sendStatus(200);
             }
@@ -63,7 +63,7 @@ export class PersonRouter {
                 return response.sendStatus(401);
             }
             // Just fetch all persons from the db and send them.
-            let personDb = db.get("persons");
+            const personDb = db.get("persons");
             return response.json(await personDb.find({}));
 
         });

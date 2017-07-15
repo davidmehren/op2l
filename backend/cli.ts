@@ -1,9 +1,11 @@
+// tslint:disable-next-line:no-var-requires
 const monk = require("monk");
-let logger = require("winston");
+// tslint:disable-next-line:no-var-requires
+const logger = require("winston");
 const dbUrl = "localhost:27017/";
 let db: any;
 import * as bcrypt from "bcrypt";
-
+// tslint:disable-next-line:no-var-requires
 const cli = require("yargs")
     .command(
         "create-admin-user <username> <email> <password>",
@@ -19,9 +21,8 @@ const cli = require("yargs")
     .demand(1)
     .argv;
 
-
 async function connectDB() {
-    let dbName = process.env.DB_NAME;
+    const dbName = process.env.DB_NAME;
     if (dbName == null) {
         logger.error("DB_NAME environment variable not defined!");
         logger.error("Could not connect to MongoDB!");
@@ -42,9 +43,9 @@ async function init() {
     logger.clear();
     logger.add(
         logger.transports.Console, {
-            json: false,
             colorize: true,
-            level: "debug"
+            json: false,
+            level: "debug",
         });
     await connectDB();
 }
@@ -57,12 +58,12 @@ function exit(code: number) {
 async function createAdminUser(user: string, email: string, password: string) {
     await init();
     logger.info(`Creating new admin: ${user} <${email}> with password ${password}`);
-    let result = await db.get("admins").find({"username": user});
+    let result = await db.get("admins").find({username: user});
     if (result.length !== 0) {
         logger.error("User with this name already exits. Aborting.");
         exit(0);
     }
-    result = await db.get("admins").find({"email": email});
+    result = await db.get("admins").find({email});
     if (result.length !== 0) {
         logger.error("User with this email already exits. Aborting.");
         exit(0);
@@ -72,9 +73,9 @@ async function createAdminUser(user: string, email: string, password: string) {
         logger.info(`Hash: ${hash}`);
         db.get("admins").insert(
             {
-                "username": user,
-                "email": email,
-                "pw_hash": hash
+                email,
+                pw_hash: hash,
+                username: user,
             })
             .then(() => {
                 logger.info("Successfully added admin.");
@@ -86,12 +87,12 @@ async function createAdminUser(user: string, email: string, password: string) {
 
 async function listAdminUsers() {
     await init();
-    let result = await db.get("admins").find({});
+    const result = await db.get("admins").find({});
     if (result.length === 0) {
         logger.warn("No admins found. You might want to create one.");
     } else {
         logger.info(`Found ${result.length} admins:`);
-        for (let admin of result) {
+        for (const admin of result) {
             logger.info(`\t${admin.username}\t\t\t <${admin.email}>`);
         }
     }

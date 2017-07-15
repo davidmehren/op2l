@@ -1,10 +1,10 @@
 export enum FoodType {
     alles,
     vegetraisch,
-    vegan
+    vegan,
 }
 
 export class Food {
-    type: FoodType;
-    comment: string;
+    public type: FoodType;
+    public comment: string;
 }

@@ -1,14 +1,14 @@
-import * as express from "express";
 import * as bcrypt from "bcrypt";
+import * as express from "express";
 import {db} from "../application";
 import {UserType} from "../model/UserTypes";
 
-let loginRouter = express.Router();
+const loginRouter = express.Router();
 
 loginRouter.post("/", async (request: any, response: express.Response) => {
-    let username = request.body.username;
-    let password = request.body.password;
-    let user = await db.get("admins").findOne({"username": username});
+    const username = request.body.username;
+    const password = request.body.password;
+    const user = await db.get("admins").findOne({username});
     if (user == null) {
         response.sendStatus(401);
         return;
@@ -20,7 +20,7 @@ loginRouter.post("/", async (request: any, response: express.Response) => {
     request.session.isLoggedIn = true;
     request.session.userType = UserType.Admin;
     request.session.username = username;
-    response.json({username: username, userType: UserType.Admin}).send();
+    response.json({username, userType: UserType.Admin}).send();
 });
 
 loginRouter.delete("/", async (request: any, response: express.Response) => {

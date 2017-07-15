@@ -1,7 +1,7 @@
 import * as express from "express";
 import {config} from "../application";
 
-let configRouter = express.Router();
+const configRouter = express.Router();
 
 configRouter.get("/", async (request: any, response: express.Response) => {
     var whiteList = {
@@ -20,16 +20,15 @@ configRouter.get("/", async (request: any, response: express.Response) => {
 });
 
 configRouter.get("/motto", async (request: any, response: express.Response) => {
-    response.send({enabled: config.motto_suggestions.enabled});
+    response.send({enabled: config.mottoSuggestions.enabled});
 });
 
 configRouter.get("/registration", async (request: any, response: express.Response) => {
-    response.send({enabled: config.teamer_registration.enabled});
+    response.send({enabled: config.teamerRegistration.enabled});
 });
 
 configRouter.get("/trip", async (request: any, response: express.Response) => {
-    response.send({enabled: config.teamer_trip.enabled});
+    response.send({enabled: config.teamerTrip.enabled});
 });
 
 export = configRouter;
-

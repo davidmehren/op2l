@@ -1,7 +1,7 @@
 import * as express from "express";
 import {UserType} from "../model/UserTypes";
 
-let adminRouter = express.Router();
+const adminRouter = express.Router();
 
 adminRouter.use(async (request: any, response: express.Response, next: any) => {
     if (request.session.isLoggedIn && request.session.userType === UserType.Admin) {

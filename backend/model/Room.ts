@@ -1,6 +1,6 @@
 export class Room {
-    name: string;
-    has_projector: boolean;
-    capacity: number;
-    comment: string;
+    public name: string;
+    public hasProjector: boolean;
+    public capacity: number;
+    public comment: string;
 }

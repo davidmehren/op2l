@@ -7,10 +7,10 @@ export enum ClothesSize {
     XXL,
     X3L,
     X4L,
-    X5L
+    X5L,
 }
 
 export class Clothes {
-    size: ClothesSize;
-    girlie: boolean;
+    public size: ClothesSize;
+    public girlie: boolean;
 }

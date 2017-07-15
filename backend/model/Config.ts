@@ -1,14 +1,14 @@
 export class Config {
-    recaptchaSiteKey: string;
-    recpatchaSecretKey: string;
-    motto_suggestions: {
+    public recaptchaSiteKey: string;
+    public recpatchaSecretKey: string;
+    public mottoSuggestions: {
+        enabled: boolean,
+    };
+    public teamerRegistration: {
         enabled: boolean;
     };
-    teamer_registration: {
-        enabled: boolean;
-    };
-    teamer_trip: {
-        enabled: boolean;
+    public teamerTrip: {
+        enabled: boolean,
     };
 
 }

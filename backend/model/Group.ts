@@ -1,7 +1,7 @@
 import {Person} from "./Person";
 
 export class Group {
-    name: string;
-    description: string;
-    members: Array<Person>;
+    public name: string;
+    public  description: string;
+    public  members: Person[];
 }

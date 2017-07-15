@@ -1,4 +1,4 @@
 export class Item {
-    name: string;
-    comment: string;
+    public name: string;
+    public comment: string;
 }
