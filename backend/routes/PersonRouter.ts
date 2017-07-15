@@ -53,6 +53,10 @@ export class PersonRouter {
             return response.sendStatus(400);
         });
 
+        /**
+         * API to get a list of all persons
+         * Only available to admins.
+         */
         this.personRouter.get("/list", async (request: any, response: express.Response) => {
             // This route can only be accessed by admins.
             if (!isAdmin(request)) {
