@@ -1,5 +1,4 @@
 import {Response} from "express";
-import {db} from "../application";
 import {Clothes} from "./Clothes";
 import {Communication} from "./Communication";
 import {Food} from "./Food";
@@ -12,9 +11,10 @@ export class Person {
      * If not, automatically send error response and reject promise.
      * @param body Express.Request body
      * @param res Express.Response
+     * @param db any
      * @returns {Promise<any>}
      */
-    public static async from_json(body: any, res: Response) {
+    public static async from_json(body: any, res: Response, db: any) {
         return new Promise(async (resolve, reject) => {
             if (body.firstName === "") {
                 reject();
@@ -34,11 +34,11 @@ export class Person {
                 reject();
                 res.status(900).send("languages");
             }
-            if (body.isHelper == null) {
+            if (body.isHelper === null) {
                 reject();
                 res.status(900).send("isHelper");
             }
-            if ((body.prevCount == null) || (body.prevCount < 0)) {
+            if ((body.prevCount === null) || (body.prevCount < 0)) {
                 reject();
                 res.status(900).send("prevCount");
             }
@@ -52,31 +52,31 @@ export class Person {
                 reject();
                 res.status(902).send("canPresent");
             }
-            if (body.food.type == null) {
+            if (body.food.type === null) {
                 reject();
                 res.status(902).send("food.type");
             }
-            if (body.clothes.size == null) {
+            if (body.clothes.size === null) {
                 reject();
                 res.status(902).send("clothes.size");
             }
-            if (body.clothes.girlie == null) {
+            if (body.clothes.girlie === null) {
                 reject();
                 res.status(900).send("girlie");
             }
-            if (body.hasCar.trip == null) {
+            if (body.hasCar.trip === null) {
                 reject();
                 res.status(900).send("car.trip");
             }
-            if (body.hasCar.ophase == null) {
+            if (body.hasCar.ophase === null) {
                 reject();
                 res.status(900).send("car.ophase");
             }
-            if (body.wantsTrip == null) {
+            if (body.wantsTrip === null) {
                 reject();
                 res.status(900).send("wantsTrip");
             }
-            if (body.hasTraining == null) {
+            if (body.hasTraining === null) {
                 reject();
                 res.status(900).send("hasTraining");
             }

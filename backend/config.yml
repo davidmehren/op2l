@@ -1,9 +1,9 @@
 ---
 recaptchaSiteKey: "changeme"
 recpatchaSecretKey: "changeme"
-motto_suggestions:
+mottoSuggestions:
   enabled: true
-teamer_registration:
+teamerRegistration:
   enabled: true
-teamer_trip:
+teamerTrip:
   enabled: true

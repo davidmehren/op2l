@@ -1,34 +1,36 @@
 import * as express from "express";
-import {config} from "../application";
+import {Config} from "../model/Config";
 
-const configRouter = express.Router();
+export class ConfigRouter {
+    public configRouter = express.Router();
 
-configRouter.get("/", async (request: any, response: express.Response) => {
-    var whiteList = {
-            recaptchaSiteKey: config.recaptchaSiteKey,
-            motto_suggestions: {
-                enabled: config.motto_suggestions.enabled
-            },
-            teamer_registration: {
-                enabled: config.teamer_registration.enabled
-            },
-            teamer_trip: {
-                enabled: config.teamer_trip.enabled
-            }
-        };
-    response.send(whiteList);
-});
+    constructor(private config: Config) {
+        this.configRouter.get("/", async (request: any, response: express.Response) => {
+            const whiteList = {
+                mottoSuggestions: {
+                    enabled: config.mottoSuggestions.enabled,
+                },
+                recaptchaSiteKey: config.recaptchaSiteKey,
+                teamerRegistration: {
+                    enabled: config.teamerRegistration.enabled,
+                },
+                teamerTrip: {
+                    enabled: config.teamerTrip.enabled,
+                },
+            };
+            response.send(whiteList);
+        });
 
-configRouter.get("/motto", async (request: any, response: express.Response) => {
-    response.send({enabled: config.mottoSuggestions.enabled});
-});
+        this.configRouter.get("/motto", async (request: any, response: express.Response) => {
+            response.send({enabled: config.mottoSuggestions.enabled});
+        });
 
-configRouter.get("/registration", async (request: any, response: express.Response) => {
-    response.send({enabled: config.teamerRegistration.enabled});
-});
+        this.configRouter.get("/registration", async (request: any, response: express.Response) => {
+            response.send({enabled: config.teamerRegistration.enabled});
+        });
 
-configRouter.get("/trip", async (request: any, response: express.Response) => {
-    response.send({enabled: config.teamerTrip.enabled});
-});
-
-export = configRouter;
+        this.configRouter.get("/trip", async (request: any, response: express.Response) => {
+            response.send({enabled: config.teamerTrip.enabled});
+        });
+    }
+}

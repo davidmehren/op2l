@@ -1,8 +1,8 @@
 import * as express from "express";
 import {Router} from "express";
 import {isNullOrUndefined} from "util";
-import {config, db} from "../application";
 import {isAdmin} from "../lib/LoginCheck";
+import {Config} from "../model/Config";
 import {Person} from "../model/Person";
 
 export class PersonRouter {
@@ -11,7 +11,7 @@ export class PersonRouter {
     private ReCaptcha = require("recaptcha2");
     private recaptcha: any;
 
-    constructor() {
+    constructor(private config: Config, private db: any) {
         this.personRouter = express.Router();
         this.recaptcha = new this.ReCaptcha({
             secretKey: config.recpatchaSecretKey,
@@ -26,7 +26,7 @@ export class PersonRouter {
             const personDb = db.get("persons");
             this.recaptcha.validate(request.body.captcha)
                 .then(async () => {
-                    const person: any = await Person.from_json(request.body, response);
+                    const person: any = await Person.from_json(request.body, response, db);
                     delete person.captcha;
                     const result = await personDb.insert(person);
                     response.send(result);
@@ -44,7 +44,7 @@ export class PersonRouter {
                 const personDb = db.get("persons");
                 // Try to find the object in the database.
                 const person = await personDb.findOne({_id: request.body._id});
-                if (person == null) {
+                if (person === null) {
                     return response.sendStatus(404);
                 }
                 personDb.update({_id: request.body._id}, request.body);

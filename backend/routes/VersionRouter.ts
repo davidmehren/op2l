@@ -1,10 +1,12 @@
 import * as express from "express";
 import {StaticConfig} from "../StaticConfig";
 
-const versionRouter = express.Router();
+export class VersionRouter {
+    public versionRouter = express.Router();
 
-versionRouter.all("/", (request: any, response: express.Response) => {
-    response.send(StaticConfig.version);
-});
-
-export = versionRouter;
+    constructor() {
+        this.versionRouter.all("/", (request: any, response: express.Response) => {
+            response.send(StaticConfig.version);
+        });
+    }
+}
