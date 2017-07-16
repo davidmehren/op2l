@@ -2,8 +2,8 @@
  * Created by philip on 06/11/2016.
  */
 export class Clothes {
-  size: string;
-  girlie = false;
+  public size: string;
+  public girlie = false;
 
 
   constructor(size: string, girlie: boolean) {

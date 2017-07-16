@@ -2,29 +2,29 @@
   <div class="form-group">
     <label for="first_name">Vorname</label>
     <input required class="form-control" id="first_name" name="first_name" placeholder="Max"
-           [(ngModel)]="model.first_name">
+           [(ngModel)]="model.firstName">
   </div>
   <div class="form-group">
     <label for="last_name">Nachname</label>
     <input required class="form-control" id="last_name" name="last_name" placeholder="Mustermann"
-           [(ngModel)]="model.last_name">
+           [(ngModel)]="model.lastName">
   </div>
   <div class="form-group">
     <label for="email">E-Mail</label>
     <input required type="email" class="form-control" id="email" name="email" placeholder="mail@example.com"
-           [(ngModel)]="model.available_communication.email">
+           [(ngModel)]="model.availableCommunication.email">
   </div>
   <div class="form-group">
     <label for="telephone">Handynummer</label>
     <input required type="tel" class="form-control" id="telephone" name="telephone" placeholder="+4917211223344"
-           [(ngModel)]="model.available_communication.telephone">
+           [(ngModel)]="model.availableCommunication.telephone">
     <small class="form-text text-muted">Bitte gib hier eine Telefonnummer an, unter der du während der O-Phase
       erreichbar bist.
     </small>
     <div class="form-check mt-1">
       <label class="form-check-label">
         <input type="checkbox" name="has_telegram" class="form-check-input"
-               [(ngModel)]="model.available_communication.telegram">
+               [(ngModel)]="model.availableCommunication.telegram">
         Ich habe Telegram
       </label>
     </div>
@@ -42,7 +42,7 @@
   </div>
   <div class="form-group">
     <label for="is_helper" class="form-check-label">
-      <input type="checkbox" class="form-check-input" id="is_helper" name="is_helper" [(ngModel)]="model.is_helper">
+      <input type="checkbox" class="form-check-input" id="is_helper" name="is_helper" [(ngModel)]="model.isHelper">
       Ich möchte nur helfen.
     </label>
   </div>
@@ -50,13 +50,13 @@
     <div class="input-group">
       <span class="input-group-addon">Ich war schon</span>
       <input type="number" class="form-control" placeholder="0" id="prev_count" name="prev_count" min="0"
-             [(ngModel)]="model.prev_count">
+             [(ngModel)]="model.prevCount">
       <span class="input-group-addon">mal Teamer.</span>
     </div>
   </div>
   <div class="form-group">
     <label for="can_present">Ich kann folgende Nebenfächer vorstellen:</label>
-    <select multiple class="form-control" id="can_present" name="can_present" [(ngModel)]="model.can_present">
+    <select multiple class="form-control" id="can_present" name="can_present" [(ngModel)]="model.canPresent">
       <option *ngFor="let item of subjectList" [value]="item.name">{{item.name}}</option>
     </select>
     <small class="form-text text-muted">Dies ist ein Multiselect-Feld. Mit der Strg- bzw. Command-Taste kannst Du
@@ -88,13 +88,13 @@
   </div>
   <div class="form-group" *ngIf="enableTeamerTrip">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" name="wants_trip" [(ngModel)]="model.wants_trip">
+      <input type="checkbox" class="form-check-input" name="wants_trip" [(ngModel)]="model.wantsTrip">
       Ich möchte an der Teamerfahrt teilnehmen.
     </label>
   </div>
   <div class="form-group">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" name="has_training" [(ngModel)]="model.has_training">
+      <input type="checkbox" class="form-check-input" name="has_training" [(ngModel)]="model.hasTraining">
       Ich habe bereits an einem Kommunikationskurs teilgenommen.
     </label>
   </div>
@@ -105,13 +105,13 @@
     <div class="row">
       <div class="col-sm-6" *ngIf="enableTeamerTrip">
         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name="has_car_ophase" [(ngModel)]="model.has_car.trip">
+          <input type="checkbox" class="form-check-input" name="has_car_ophase" [(ngModel)]="model.hasCar.trip">
           ...während der Teamerfahrt.
         </label>
       </div>
       <div class="col-sm-6">
         <label class="form-check-label">
-          <input type="checkbox" class="form-check-input" name="hat_car_ophase" [(ngModel)]="model.has_car.ophase">
+          <input type="checkbox" class="form-check-input" name="hat_car_ophase" [(ngModel)]="model.hasCar.ophase">
           ...während der O-Phase
         </label>
       </div>
@@ -129,7 +129,7 @@
   <div class="form-group">
     <label for="partner_wish">Mitteamerwünsche</label>
     <textarea class="form-control" id="partner_wish" name="partner_wish" rows="2"
-              [(ngModel)]="model.partner_wish"></textarea>
+              [(ngModel)]="model.partnerWish"></textarea>
   </div>
   <div class="form-group">
     <label for="comment">Weitere Bemerkungen</label>
