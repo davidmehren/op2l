@@ -2,8 +2,8 @@
  * Created by philip on 06/11/2016.
  */
 export class Food {
-  type: string;
-  comment: string;
+  public type: string;
+  public comment: string;
   public static typeList = [
     new Food("alles", ""),
     new Food("vegetarisch", ""),

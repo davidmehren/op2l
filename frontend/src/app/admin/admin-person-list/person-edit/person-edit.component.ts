@@ -17,30 +17,30 @@ import {ModalDirective} from "ngx-bootstrap";
 export class PersonEditComponent implements OnInit {
 
   @Input()
-  person: Person;
+  public person: Person;
 
   @Input()
-  modal: ModalDirective;
+  public modal: ModalDirective;
 
-  loading = false;
-  submitState = 0;
+  public loading = false;
+  public submitState = 0;
 
-  subjectList = MinorSubject.subjectList;
-  langList = Language.languages;
-  foodTypeList = Food.typeList;
-  clothesSizeList = Clothes.sizeList;
-  workGroupList = Group.workGroups;
+  public subjectList = MinorSubject.subjectList;
+  public langList = Language.languages;
+  public foodTypeList = Food.typeList;
+  public clothesSizeList = Clothes.sizeList;
+  public workGroupList = Group.workGroups;
 
-  enableTeamerTrip = false;
+  public enableTeamerTrip = false;
 
   constructor(private gConfService: GlobalConfigService, private personService: AdminPersonService) {
     this.gConfService.teamerTripEnabled().then((res) => this.enableTeamerTrip = res);
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  onSubmit(event: any) {
+  public onSubmit(event: any) {
     event.preventDefault();
     this.loading = true;
     this.personService.updatePerson(this.person)

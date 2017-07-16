@@ -15,20 +15,20 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
   @ViewChild("editModal")
   public editModal: ModalDirective;
   public isEditModalShown = false;
-  personToEdit: Person;
+  public personToEdit: Person;
 
   @ViewChild("deleteModal")
   public deleteModal: ModalDirective;
   public isDeleteModalShown = false;
 
-  dtTrigger: Subject<any> = new Subject();
-  personList: Person[] = [];
+  public dtTrigger: Subject<any> = new Subject();
+  public personList: Person[] = [];
 
   // noinspection JSUnusedGlobalSymbols
   @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
+  public dtElement: DataTableDirective;
 
-  dtOptions: any = {
+  public  dtOptions: any = {
     language: {
       url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/German.json"
     },
@@ -73,7 +73,7 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
   constructor(private personService: AdminPersonService) {
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     $(() => {
       const table: any = $("#example").DataTable();
       table.buttons().container().appendTo("#personTableWrapper .col-md-6:eq(0)");
@@ -81,7 +81,7 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngOnInit() {
+  public ngOnInit() {
     this.personService.getPersons().subscribe(
       pList => {
         // Update my list (do we still need this?)
@@ -95,7 +95,7 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
     );
   }
 
-  rowClickHandler(data: any, event) {
+  public rowClickHandler(data: any, event) {
     if (event.target.id === "edit") {
       this.personToEdit = data;
       this.showEditModal();

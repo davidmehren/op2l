@@ -1,9 +1,9 @@
 import {UserType} from "./UserTypes";
 
 export class User {
-  username: String;
-  type: UserType;
-  loggedIn: Boolean;
+  public username: String;
+  public type: UserType;
+  public loggedIn: Boolean;
 
 
   constructor(username: String, type: UserType, loggedIn: Boolean) {

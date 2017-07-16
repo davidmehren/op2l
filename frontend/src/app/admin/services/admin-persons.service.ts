@@ -13,13 +13,13 @@ export class AdminPersonService {
   private personUrl = "api/person";
 
 
-  getPersons(): Observable<Person[]> {
+  public getPersons(): Observable<Person[]> {
     return this.http.get(this.personListUrl)
       .map(AdminPersonService.extractData)
       .catch(AdminPersonService.handleError);
   }
 
-  addPerson(motto: string, name: string): Observable<Person> {
+  public addPerson(motto: string, name: string): Observable<Person> {
     const headers = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: headers});
     return this.http.post(this.personUrl, {motto, name}, options)
@@ -27,7 +27,7 @@ export class AdminPersonService {
       .catch(AdminPersonService.handleError);
   }
 
-  updatePerson(person: Person): Observable<Response> {
+  public updatePerson(person: Person): Observable<Response> {
     const headers = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: headers});
     return this.http.put(this.personUrl, person, options);

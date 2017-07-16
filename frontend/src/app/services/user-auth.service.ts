@@ -12,7 +12,7 @@ export class UserAuthService {
   constructor(private http: Http) {
   }
 
-  login(username: String, password: String) {
+  public login(username: String, password: String) {
     this.http.post(
       "api/login",
       JSON.stringify({username: username, password: password}),
@@ -30,11 +30,11 @@ export class UserAuthService {
       });
   }
 
-  observable() {
+  public observable() {
     return this.loginState.asObservable();
   }
 
-  logout() {
+  public logout() {
     this.http.delete("/api/login")
       .toPromise()
       .then((response: Response) => {
@@ -49,7 +49,7 @@ export class UserAuthService {
       });
   }
 
-  isLoggedIn() {
+  public isLoggedIn() {
     // Check if we are already logged in by making a GET Request to /api/login
     this.http.get("/api/login")
       .toPromise()

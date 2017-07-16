@@ -9,7 +9,7 @@ export class GlobalConfigService implements CanActivate {
 
   private enableTeamerLogin = false;
 
-  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     switch (route.url[0].path) {
       case "vorschlaege":
         const mottoEnabled = await this.mottoSuggestionsEnabled();

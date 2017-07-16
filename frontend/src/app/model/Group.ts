@@ -2,8 +2,8 @@
  * Created by philip on 06/11/2016.
  */
 export class Group {
-  name: string;
-  description: string;
+  public name: string;
+  public description: string;
 
   public static workGroups = [
     new Group("AK Campusrallye", "Organisiert die Campusrallye"),

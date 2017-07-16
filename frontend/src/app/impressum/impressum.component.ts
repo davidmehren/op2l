@@ -10,7 +10,7 @@ export class ImpressumComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

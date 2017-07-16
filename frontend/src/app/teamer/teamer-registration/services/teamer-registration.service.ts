@@ -13,7 +13,7 @@ export class TeamerRegistrationService {
   private personUrl = "/api/person";
 
 
-  addPerson(person: Person): Observable<Person> {
+  public addPerson(person: Person): Observable<Person> {
     const headers = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: headers});
     return this.http.post(this.personUrl, person, options)

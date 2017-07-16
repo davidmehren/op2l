@@ -12,7 +12,7 @@ export class LogoutComponent implements OnInit {
   constructor(private authService: UserAuthService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.authService.observable().subscribe(result => {
       if (result !== null) {
         console.log("Ignoring logged in user.");

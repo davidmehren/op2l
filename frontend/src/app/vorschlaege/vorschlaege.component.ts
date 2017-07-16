@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {MottoVorschlag} from "../model/motto-vorschlag";
+import {MottoVorschlag} from "../model/MottoVorschlag";
 import {MottoVorschlaegeService} from "../services/motto-vorschlaege.service";
 
 @Component({
@@ -8,12 +8,12 @@ import {MottoVorschlaegeService} from "../services/motto-vorschlaege.service";
   styleUrls: ["./vorschlaege.component.css"]
 })
 export class VorschlaegeComponent implements OnInit {
-  vorschlagList: Array<MottoVorschlag> = [];
+  private vorschlagList: Array<MottoVorschlag> = [];
 
   constructor(private mottoService: MottoVorschlaegeService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.mottoService
       .getMottos()
       .subscribe(

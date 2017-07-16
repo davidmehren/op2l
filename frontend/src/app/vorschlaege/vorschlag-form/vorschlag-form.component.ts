@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {MottoVorschlag} from "../../model/motto-vorschlag";
+import {MottoVorschlag} from "../../model/MottoVorschlag";
 import {MottoVorschlaegeService} from "../../services/motto-vorschlaege.service";
 
 @Component({
@@ -8,18 +8,19 @@ import {MottoVorschlaegeService} from "../../services/motto-vorschlaege.service"
   styleUrls: ["./vorschlag-form.component.css"]
 })
 export class VorschlagFormComponent implements OnInit {
-  model = new MottoVorschlag("");
+  private model = new MottoVorschlag("");
+  // noinspection JSMismatchedCollectionQueryUpdate
   @Input()
-  vorschlagsList: Array<MottoVorschlag>;
-  submitState = 0;
+  private vorschlagsList: Array<MottoVorschlag>;
+  private submitState = 0;
 
   constructor(private mottoService: MottoVorschlaegeService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  onSubmit() {
+  public onSubmit() {
     console.log("SUBMIT!");
     this.mottoService
       .addMotto(this.model.motto, this.model.name)
@@ -30,16 +31,16 @@ export class VorschlagFormComponent implements OnInit {
     return false;
   }
 
-  onSubmitSuccess(motto: MottoVorschlag) {
+  public onSubmitSuccess(motto: MottoVorschlag) {
     this.vorschlagsList.push(motto);
     this.submitState = 1;
   }
 
-  onSubmitError(error: any) {
+  public onSubmitError(error: any) {
     this.submitState = 3;
   }
 
-  resetForm() {
+  public resetForm() {
     if (this.submitState !== 3) {
       this.model.motto = "";
     }

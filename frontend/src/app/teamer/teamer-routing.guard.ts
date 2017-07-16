@@ -8,7 +8,7 @@ export class TeamerRoutingGuard implements CanActivate {
 
   }
 
-  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     switch (next.url[0].path) {
       case "anmeldung":
         const enabled = await this.configService.teamerRegistrationEnabled();

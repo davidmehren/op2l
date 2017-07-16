@@ -10,7 +10,7 @@ export class PacmanLoaderComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

@@ -1,6 +1,6 @@
 export class Language {
-  name: string;
-  short: string;
+  public name: string;
+  public short: string;
 
 
   public static languages = [

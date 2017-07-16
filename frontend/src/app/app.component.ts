@@ -9,7 +9,7 @@ import {UserAuthService} from "./services/user-auth.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  menuState = {
+  public menuState = {
     teamerLogin: false,
     teamerReg: false,
     mottoSugg: false,
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   };
 
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.gConfService.teamerRegistrationEnabled().then((res) => this.menuState.teamerReg = res);
     this.gConfService.teamerLoginEnabled().then((res) => this.menuState.teamerLogin = res);
     this.gConfService.mottoSuggestionsEnabled().then((res) => this.menuState.mottoSugg = res);
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   public navCollapsed = true;
 
 
-  teamerMenuEnabled() {
+  public teamerMenuEnabled() {
     return this.menuState.teamerLogin || this.menuState.teamerReg || false;
   }
 }

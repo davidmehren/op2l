@@ -2,7 +2,7 @@
  * Created by philip on 06/11/2016.
  */
 export class MinorSubject {
-  name: string;
+  public name: string;
 
 
   constructor(name: string) {

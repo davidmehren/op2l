@@ -16,23 +16,23 @@ import {Language} from "../../../model/Languages";
   styleUrls: ["./teamer-registration-form.component.css"]
 })
 export class TeamerRegistrationFormComponent implements OnInit {
-  model: Person = new Person();
-  tempClotheSize: string;
-  subjectList = MinorSubject.subjectList;
-  langList = Language.languages;
-  foodTypeList = Food.typeList;
-  clothesSizeList = Clothes.sizeList;
-  workGroupList = Group.workGroups;
-  enableTeamerTrip = false;
-  submitState = 0;
-  loading = false;
-  siteKey = "";
+  public model: Person = new Person();
+  public tempClotheSize: string;
+  public subjectList = MinorSubject.subjectList;
+  public langList = Language.languages;
+  public foodTypeList = Food.typeList;
+  public clothesSizeList = Clothes.sizeList;
+  public workGroupList = Group.workGroups;
+  public enableTeamerTrip = false;
+  public submitState = 0;
+  public loading = false;
+  public siteKey = "";
 
   constructor(private tRegService: TeamerRegistrationService,
               private gConfService: GlobalConfigService, private angulartics2: Angulartics2) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.gConfService.teamerTripEnabled().then((res) => this.enableTeamerTrip = res);
     this.gConfService.recaptchaSiteKey().then(res => this.siteKey = res);
   }
@@ -50,13 +50,13 @@ export class TeamerRegistrationFormComponent implements OnInit {
     return false;
   }
 
-  onSubmitSuccess() {
+  public onSubmitSuccess() {
     this.angulartics2.eventTrack.next({action: "teamer-registration-success", properties: {category: "teamer"}});
     this.submitState = 1;
     this.loading = false;
   }
 
-  onSubmitError(error: any) {
+  public onSubmitError(error: any) {
     if (error.status === 901) {
       this.submitState = 2;
       this.angulartics2.eventTrack.next({action: "teamer-registration-duplicate", properties: {category: "teamer"}});
@@ -67,7 +67,7 @@ export class TeamerRegistrationFormComponent implements OnInit {
     this.loading = false;
   }
 
-  resetForm() {
+  public resetForm() {
     if (this.submitState !== 3) {
       this.model = new Person();
       this.tempClotheSize = undefined;

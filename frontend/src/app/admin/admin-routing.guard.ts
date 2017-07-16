@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular
 
 @Injectable()
 export class AdminRoutingGuard implements CanActivate {
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  public canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     return true;
   }

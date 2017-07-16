@@ -10,7 +10,7 @@ export class AdminMottoListComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

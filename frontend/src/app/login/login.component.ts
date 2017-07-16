@@ -10,23 +10,23 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  username = "";
-  password = "";
-  state = 0;
+  public username = "";
+  public password = "";
+  public state = 0;
 
   constructor(private authService: UserAuthService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.authService.observable().subscribe(result => this.processLoginResult(result));
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.authService.login(this.username, this.password);
     this.state = 1;
   }
 
-  processLoginResult(user: User) {
+  private processLoginResult(user: User) {
     if (user === null) {
       return;
     }

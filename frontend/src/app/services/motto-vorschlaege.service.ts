@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http, RequestOptions, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {MottoVorschlag} from "../model/motto-vorschlag";
+import {MottoVorschlag} from "../model/MottoVorschlag";
 import "rxjs/add/operator/catch";
 
 @Injectable()
@@ -14,13 +14,13 @@ export class MottoVorschlaegeService {
   private mottoUrl = "api/motto";
 
 
-  getMottos(): Observable<MottoVorschlag[]> {
+  public getMottos(): Observable<MottoVorschlag[]> {
     return this.http.get(this.mottoListUrl)
       .map(MottoVorschlaegeService.extractData)
       .catch(MottoVorschlaegeService.handleError);
   }
 
-  addMotto(motto: string, name: string): Observable<MottoVorschlag> {
+  public addMotto(motto: string, name: string): Observable<MottoVorschlag> {
     const headers = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: headers});
     return this.http.post(this.mottoUrl, {motto, name}, options)

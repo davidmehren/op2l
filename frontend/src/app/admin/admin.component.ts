@@ -11,7 +11,7 @@ export class AdminComponent implements OnInit {
   constructor(public router: Router, public route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }
