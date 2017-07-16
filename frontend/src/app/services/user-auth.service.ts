@@ -56,7 +56,7 @@ export class UserAuthService {
       .then((response: Response) => {
         if (response.ok) {
           console.log("Detected that we are already logged in.");
-          let json = response.json();
+          const json = response.json();
           this.loginState.next(new User(json.username, json.userType, true));
         }
       })

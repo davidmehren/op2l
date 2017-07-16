@@ -14,12 +14,12 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
 
   @ViewChild("editModal")
   public editModal: ModalDirective;
-  public isEditModalShown: boolean = false;
+  public isEditModalShown = false;
   personToEdit: Person;
 
   @ViewChild("deleteModal")
   public deleteModal: ModalDirective;
-  public isDeleteModalShown: boolean = false;
+  public isDeleteModalShown = false;
 
   dtTrigger: Subject<any> = new Subject();
   personList: Person[] = [];
@@ -43,10 +43,10 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
       return row;
     },
     columns: [
-      {data: "first_name"},
-      {data: "last_name"},
+      {data: "firstName"},
+      {data: "lastName"},
       {
-        data: "is_helper",
+        data: "isHelper",
         render: (data => data ? "✓" : "✗")
       },
       {
@@ -75,7 +75,7 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     $(() => {
-      let table: any = $("#example").DataTable();
+      const table: any = $("#example").DataTable();
       table.buttons().container().appendTo("#personTableWrapper .col-md-6:eq(0)");
     });
   }
@@ -96,11 +96,11 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
   }
 
   rowClickHandler(data: any, event) {
-    if (event.target.id == "edit") {
+    if (event.target.id === "edit") {
       this.personToEdit = data;
       this.showEditModal();
     }
-    if (event.target.id == "delete") {
+    if (event.target.id === "delete") {
       this.personToEdit = data;
       this.showDeleteModal();
     }

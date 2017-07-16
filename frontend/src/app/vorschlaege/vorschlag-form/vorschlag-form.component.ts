@@ -11,7 +11,7 @@ export class VorschlagFormComponent implements OnInit {
   model = new MottoVorschlag("");
   @Input()
   vorschlagsList: Array<MottoVorschlag>;
-  submitState: number = 0;
+  submitState = 0;
 
   constructor(private mottoService: MottoVorschlaegeService) {
   }
@@ -40,7 +40,7 @@ export class VorschlagFormComponent implements OnInit {
   }
 
   resetForm() {
-    if (this.submitState != 3) {
+    if (this.submitState !== 3) {
       this.model.motto = "";
     }
     this.submitState = 0;

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     this.gConfService.teamerLoginEnabled().then((res) => this.menuState.teamerLogin = res);
     this.gConfService.mottoSuggestionsEnabled().then((res) => this.menuState.mottoSugg = res);
     this.authService.observable().subscribe((user) => {
-      if (user == null) {
+      if (user === null) {
         this.menuState.loggedIn = false;
       } else if (user.loggedIn) {
         this.menuState.loggedIn = true;

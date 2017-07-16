@@ -40,7 +40,7 @@
     </label>
   </div>
 
-  <button type="submit" [disabled]="!vorschlagForm.form.valid" class="btn btn-primary">Absenden</button>
+  <button [disabled]="!vorschlagForm.form.valid" class="btn btn-primary">Absenden</button>
 </form>
 <div class="alert alert-success" *ngIf="submitState == 1">
   Das Motto {{model.motto}} wurde erfolgreich gespeichert

@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class GlobalConfigService implements CanActivate {
@@ -11,8 +12,8 @@ export class GlobalConfigService implements CanActivate {
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     switch (route.url[0].path) {
       case "vorschlaege":
-        const enabled = await this.mottoSuggestionsEnabled();
-        if (!enabled) {
+        const mottoEnabled = await this.mottoSuggestionsEnabled();
+        if (!mottoEnabled) {
           // If motto suggestions are disabled, redirect to home page
           this.router.navigate(["/home"]);
           return false;
@@ -21,8 +22,8 @@ export class GlobalConfigService implements CanActivate {
       case "teamer":
         switch (route.url[1].path) {
           case "anmeldung":
-            const enabled = await this.teamerRegistrationEnabled();
-            if (!enabled) {
+            const teamerEnabled = await this.teamerRegistrationEnabled();
+            if (!teamerEnabled) {
               // If teamer registrations are disabled, redirect to home page
               this.router.navigate(["/home"]);
               return false;

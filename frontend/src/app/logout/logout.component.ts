@@ -14,7 +14,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
     this.authService.observable().subscribe(result => {
-      if (result != null) {
+      if (result !== null) {
         console.log("Ignoring logged in user.");
       } else {
         setTimeout(() => {

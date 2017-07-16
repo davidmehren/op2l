@@ -3,7 +3,7 @@
  */
 export class Clothes {
   size: string;
-  girlie: boolean = false;
+  girlie = false;
 
 
   constructor(size: string, girlie: boolean) {

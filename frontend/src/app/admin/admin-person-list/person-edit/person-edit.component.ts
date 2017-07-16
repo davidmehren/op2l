@@ -22,8 +22,8 @@ export class PersonEditComponent implements OnInit {
   @Input()
   modal: ModalDirective;
 
-  loading: boolean = false;
-  submitState: number = 0;
+  loading = false;
+  submitState = 0;
 
   subjectList = MinorSubject.subjectList;
   langList = Language.languages;

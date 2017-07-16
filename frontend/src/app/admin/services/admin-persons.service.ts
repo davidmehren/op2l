@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http, RequestOptions, Response,} from "@angular/http";
+import {Headers, Http, RequestOptions, Response, } from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Person} from "../../model/Person";
 
@@ -20,22 +20,22 @@ export class AdminPersonService {
   }
 
   addPerson(motto: string, name: string): Observable<Person> {
-    let headers = new Headers({"Content-Type": "application/json"});
-    let options = new RequestOptions({headers: headers});
+    const headers = new Headers({"Content-Type": "application/json"});
+    const options = new RequestOptions({headers: headers});
     return this.http.post(this.personUrl, {motto, name}, options)
       .map(AdminPersonService.extractData)
       .catch(AdminPersonService.handleError);
   }
 
   updatePerson(person: Person): Observable<Response> {
-    let headers = new Headers({"Content-Type": "application/json"});
-    let options = new RequestOptions({headers: headers});
+    const headers = new Headers({"Content-Type": "application/json"});
+    const options = new RequestOptions({headers: headers});
     return this.http.put(this.personUrl, person, options);
   }
 
 
   private static extractData(res: Response): Person {
-    let body = res.json();
+    const body = res.json();
     return body || {};
   }
 

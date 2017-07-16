@@ -13,8 +13,8 @@ export class Person {
   last_name: string;
   available_communication: Communication = new Communication();
   languages: Array<string>;
-  is_helper: boolean = false;
-  prev_count: number = 0;
+  is_helper = false;
+  prev_count = 0;
   can_present: Array<MinorSubject> = [];
   food: Food = new Food("", "");
   clothes: Clothes = new Clothes("", false);
@@ -22,8 +22,8 @@ export class Person {
     trip: false,
     ophase: false
   };
-  wants_trip: boolean = false;
-  has_training: boolean = false;
+  wants_trip = false;
+  has_training = false;
   workgroups: Array<Group> = [];
   partner_wish: string;
   comment: string;

@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   processLoginResult(user: User) {
-    console.debug(`Got observable result: ${JSON.stringify(user)}`);
-    if (user == null) {
+    if (user === null) {
       return;
     }
     if (user.loggedIn) {

@@ -24,11 +24,12 @@ export class TeamerRegistrationFormComponent implements OnInit {
   clothesSizeList = Clothes.sizeList;
   workGroupList = Group.workGroups;
   enableTeamerTrip = false;
-  submitState: number = 0;
+  submitState = 0;
   loading = false;
   siteKey = "";
 
-  constructor(private tRegService: TeamerRegistrationService, private gConfService: GlobalConfigService, private angulartics2: Angulartics2) {
+  constructor(private tRegService: TeamerRegistrationService,
+              private gConfService: GlobalConfigService, private angulartics2: Angulartics2) {
   }
 
   ngOnInit() {
@@ -40,16 +41,12 @@ export class TeamerRegistrationFormComponent implements OnInit {
   public onSubmit(event: any) {
     event.preventDefault();
     this.loading = true;
-    //this.model.food.type = this.foodTypeList.indexOf(this.model.food.type);
-    //this.model.clothes.size = this.clothesSizeList.indexOf(this.tempClotheSize);
     this.tRegService.addPerson(this.model)
       .subscribe(
         () => this.onSubmitSuccess(),
         error => this.onSubmitError(error)
       );
     this.angulartics2.eventTrack.next({action: "teamer-registration-submit", properties: {category: "teamer"}});
-    //this.model.food.type = this.foodTypeList[this.model.food.type];
-    //this.model.clothes.size = this.clothesSizeList[this.model.clothes.size];
     return false;
   }
 
@@ -60,11 +57,10 @@ export class TeamerRegistrationFormComponent implements OnInit {
   }
 
   onSubmitError(error: any) {
-    if (error.status == 901) {
+    if (error.status === 901) {
       this.submitState = 2;
       this.angulartics2.eventTrack.next({action: "teamer-registration-duplicate", properties: {category: "teamer"}});
-    }
-    else {
+    } else {
       this.submitState = 3;
       this.angulartics2.eventTrack.next({action: "teamer-registration-error", properties: {category: "teamer"}});
     }
@@ -72,7 +68,7 @@ export class TeamerRegistrationFormComponent implements OnInit {
   }
 
   resetForm() {
-    if (this.submitState != 3) {
+    if (this.submitState !== 3) {
       this.model = new Person();
       this.tempClotheSize = undefined;
     }
