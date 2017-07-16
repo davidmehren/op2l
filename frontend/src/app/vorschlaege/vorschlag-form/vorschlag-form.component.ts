@@ -21,7 +21,6 @@ export class VorschlagFormComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log("SUBMIT!");
     this.mottoService
       .addMotto(this.model.motto, this.model.name)
       .subscribe(
