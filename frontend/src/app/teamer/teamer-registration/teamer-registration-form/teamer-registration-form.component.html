@@ -135,7 +135,7 @@
     <label for="comment">Weitere Bemerkungen</label>
     <textarea class="form-control" id="comment" rows="3" name="comment" [(ngModel)]="model.comment"></textarea>
   </div>
-  <re-captcha required [siteKey]="siteKey" name="captcha" [(ngModel)]="model.captcha"
+  <re-captcha required #captchaRef="reCaptcha" [siteKey]="siteKey" name="captcha" [(ngModel)]="model.captcha"
               style="border-left-width: 0"></re-captcha>
   <button [disabled]="!anmeldungForm.form.valid" class="btn btn-primary mt-1" *ngIf="!loading">Absenden</button>
   <app-pacman-loader *ngIf="loading"></app-pacman-loader>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {Person} from "../../../model/Person";
 import {MinorSubject} from "../../../model/MinorSubject";
 import {Food} from "../../../model/Food";
@@ -9,6 +9,7 @@ import {GlobalConfigService} from "../../../services/global-config.service";
 import {Angulartics2} from "angulartics2";
 import {Clothes} from "../../../model/Clothes";
 import {Language} from "../../../model/Languages";
+import {RecaptchaComponent} from "ng-recaptcha";
 
 @Component({
   selector: "app-teamer-registration-form",
@@ -27,6 +28,8 @@ export class TeamerRegistrationFormComponent implements OnInit {
   public submitState = 0;
   public loading = false;
   public siteKey = "";
+  @ViewChild(RecaptchaComponent)
+  private captchRef: RecaptchaComponent;
 
   constructor(private tRegService: TeamerRegistrationService,
               private gConfService: GlobalConfigService, private angulartics2: Angulartics2) {
@@ -34,7 +37,11 @@ export class TeamerRegistrationFormComponent implements OnInit {
 
   public ngOnInit() {
     this.gConfService.teamerTripEnabled().then((res) => this.enableTeamerTrip = res);
-    this.gConfService.recaptchaSiteKey().then(res => this.siteKey = res);
+    this.gConfService.recaptchaSiteKey().then(res => {
+      this.siteKey = res;
+      this.captchRef.reset();
+    });
+
   }
 
 

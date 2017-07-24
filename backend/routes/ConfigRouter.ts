@@ -32,5 +32,9 @@ export class ConfigRouter {
         this.configRouter.get("/trip", async (request: any, response: express.Response) => {
             response.send({enabled: config.teamerTrip.enabled});
         });
+
+        this.configRouter.get("/recaptchasitekey", async (request: any, response: express.Response) => {
+            response.send({key: config.recaptchaSiteKey});
+        });
     }
 }

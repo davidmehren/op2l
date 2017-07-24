@@ -1,6 +1,6 @@
 ---
-recaptchaSiteKey: "changeme"
-recpatchaSecretKey: "changeme"
+recaptchaSiteKey: "6LcPEgsUAAAAAJB_ZC7wsU13JWZM4IiAXQuO7xvZ"
+recpatchaSecretKey: "6LcPEgsUAAAAAMYXeXRT5z-wC2BM4RGQY_C28H5T"
 mottoSuggestions:
   enabled: true
 teamerRegistration:

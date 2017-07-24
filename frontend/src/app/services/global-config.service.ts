@@ -71,8 +71,8 @@ export class GlobalConfigService implements CanActivate {
   }
 
   public recaptchaSiteKey(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      resolve("changeme");
-    });
+    return this.http.get("/api/config/recaptchasitekey").map((res: Response) => {
+      return res.json().key;
+    }).toPromise();
   }
 }
