@@ -9,8 +9,8 @@ import {Clothes} from "./Clothes";
  */
 export class Person {
   public _id?: string;
-  public firstName: string;
-  public lastName: string;
+  public firstName = "";
+  public lastName = "";
   public availableCommunication: Communication = new Communication();
   public languages: Array<string>;
   public isHelper = false;
@@ -25,7 +25,7 @@ export class Person {
   public wantsTrip = false;
   public hasTraining = false;
   public workgroups: Group[] = [];
-  public partnerWish: string;
-  public comment: string;
-  public captcha: string;
+  public partnerWish = "";
+  public comment = "";
+  public captcha = "";
 }
