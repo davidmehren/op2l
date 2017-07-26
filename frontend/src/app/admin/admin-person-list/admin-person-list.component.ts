@@ -4,6 +4,7 @@ import {Person} from "../../model/Person";
 import {Subject} from "rxjs/Subject";
 import {ModalDirective} from "ngx-bootstrap";
 import {DataTableDirective} from "angular-datatables";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: "app-admin-person-list",
@@ -28,7 +29,7 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
   @ViewChild(DataTableDirective)
   public dtElement: DataTableDirective;
 
-  public  dtOptions: any = {
+  public dtOptions: any = {
     language: {
       url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/German.json"
     },
@@ -45,10 +46,40 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
     columns: [
       {data: "firstName"},
       {data: "lastName"},
+      {data: "availableCommunication.email"},
+      {data: "availableCommunication.telephone", visible: false},
+      {data: "availableCommunication.telegram", render: (data => data ? "✓" : "✗"), visible: false},
+      {data: "languages", visible: false},
       {
         data: "isHelper",
         render: (data => data ? "✓" : "✗")
       },
+      {data: "prevCount", visible: false},
+      {data: "canPresent", visible: false},
+      {
+        data: "food",
+        render: ((data, t, row) => {
+          if (!isNullOrUndefined(data.comment)) {
+            return data.type + " <b>" + data.comment + "</b>";
+          } else {
+            return data.type;
+          }
+        }),
+        visible: false
+      },
+      {
+        data: "clothes",
+        render: ((data, t, row) => {
+          return data.girlie ? data.size + " <b>Girlie</b>" : data.size;
+        }), visible: false
+      },
+      {data: "hasCar.trip", render: (data => data ? "✓" : "✗"), visible: false},
+      {data: "hasCar.trip", render: (data => data ? "✓" : "✗"), visible: false},
+      {data: "wantsTrip", render: (data => data ? "✓" : "✗"), visible: false},
+      {data: "hasTraining", render: (data => data ? "✓" : "✗"), visible: false},
+      {data: "workgroups", visible: false},
+      {data: "partnerWish"},
+      {data: "comment"},
       {
         data: null,
         orderable: false,
@@ -64,7 +95,16 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
     buttons: {
       buttons: [
         {extend: "copy", className: "btn-sm"},
-        {extend: "csv", className: "btn-sm"}
+        {
+          extend: "csv",
+          className: "btn-sm",
+          exportOptions: {
+            columns: ( idx, data, node ) => {
+              return node.getAttribute("aria-label") !== "Button";
+            }
+          }
+        },
+        {extend: "colvis", className: "btn-sm"}
       ]
     },
     lengthChange: true
