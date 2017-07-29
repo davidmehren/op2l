@@ -8,7 +8,7 @@ import {MottoVorschlaegeService} from "../../services/motto-vorschlaege.service"
   styleUrls: ["./vorschlag-form.component.css"]
 })
 export class VorschlagFormComponent implements OnInit {
-  private model = new MottoVorschlag("");
+  public model = new MottoVorschlag("");
   // noinspection JSMismatchedCollectionQueryUpdate
   @Input()
   public vorschlagsList: Array<MottoVorschlag>;
