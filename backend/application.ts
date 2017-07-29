@@ -34,6 +34,7 @@ const logger = new winston.Logger({
 export class OPhaseApi {
     private static configureMiddleware(app: express.Express) {
         logger.info("Configuring middleware...");
+        app.disable("x-powered-by");
         app.use(bodyParser.json());
         app.use(bodyParser.text({
             type: "application/xml",
