@@ -48,7 +48,7 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
       {data: "lastName"},
       {data: "availableCommunication.email"},
       {data: "availableCommunication.telephone", visible: false},
-      {data: "availableCommunication.telegram", render: (data => data ? "✓" : "✗"), visible: false},
+      {data: "availableCommunication.telegram", render: (data => data ? "✓" : "✗"), visible: false, defaultContent: "<b>ERROR</b>"},
       {data: "languages", visible: false},
       {
         data: "isHelper",
@@ -78,14 +78,14 @@ export class AdminPersonListComponent implements OnInit, AfterViewInit {
       {data: "wantsTrip", render: (data => data ? "✓" : "✗"), visible: false},
       {data: "hasTraining", render: (data => data ? "✓" : "✗"), visible: false},
       {data: "workgroups", visible: false},
-      {data: "partnerWish"},
-      {data: "comment"},
+      {data: "partnerWish", defaultContent: ""},
+      {data: "comment", defaultContent: ""},
       {
         data: null,
         orderable: false,
         render: ((data, t, row) =>
-          "<button type=\"button\" id=\"edit\" class=\"btn btn-primary btn-sm\"\">Bearbeiten</a>" +
-          "<button type=\"button\" id=\"delete\" class=\"btn btn-danger btn-sm ml-1\"\">Löschen</a>")
+          "<button type=\"button\" id=\"edit\" class=\"btn btn-primary btn-sm mt-1\"\">Bearbeiten</a>" +
+          "<button type=\"button\" id=\"delete\" class=\"btn btn-danger btn-sm ml-1 mt-1\"\">Löschen</a>")
       }
     ],
     dom: "<'row mt-3'<'col-sm-3 d-flex align-items-center'l><'col-sm-3'B><'col-sm-6'f>>" +
