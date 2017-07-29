@@ -1,5 +1,6 @@
 import * as express from "express";
 import {isAdmin} from "../lib/LoginCheck";
+import {MottoVorschlag} from "../model/MottoVorschlag";
 
 export class MottoRouter {
     public mottoRouter = express.Router();
@@ -7,9 +8,9 @@ export class MottoRouter {
     constructor(private db: any) {
         this.mottoRouter.post("/", (req, res) => {
             const mottodb = db.get("mottos");
-            const body = req.body;
-            mottodb.insert(body);
-            res.send(body);
+            const motto = new MottoVorschlag(req.body.motto, req.body.name);
+            mottodb.insert(motto);
+            res.send(motto);
         });
 
         /**
