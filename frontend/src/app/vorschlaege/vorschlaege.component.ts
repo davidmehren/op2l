@@ -8,7 +8,7 @@ import {MottoVorschlaegeService} from "../services/motto-vorschlaege.service";
   styleUrls: ["./vorschlaege.component.css"]
 })
 export class VorschlaegeComponent implements OnInit {
-  private vorschlagList: Array<MottoVorschlag> = [];
+  public vorschlagList: Array<MottoVorschlag> = [];
 
   constructor(private mottoService: MottoVorschlaegeService) {
   }

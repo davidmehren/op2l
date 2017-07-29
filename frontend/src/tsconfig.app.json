@@ -1,26 +1,18 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es5",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
     "outDir": "../out-tsc/app",
+    "baseUrl": "./",
     "module": "es2015",
-    "baseUrl": "",
     "types": [],
-    "skipLibCheck": true
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ]
+    }
   },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ],
-  "paths": {
-    "@angular/*": ["../node_modules/@angular/*"]
-  }
+  ]
 }

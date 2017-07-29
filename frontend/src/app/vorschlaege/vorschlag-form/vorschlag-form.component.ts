@@ -11,8 +11,8 @@ export class VorschlagFormComponent implements OnInit {
   private model = new MottoVorschlag("");
   // noinspection JSMismatchedCollectionQueryUpdate
   @Input()
-  private vorschlagsList: Array<MottoVorschlag>;
-  private submitState = 0;
+  public vorschlagsList: Array<MottoVorschlag>;
+  public submitState = 0;
 
   constructor(private mottoService: MottoVorschlaegeService) {
   }
