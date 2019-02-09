@@ -16,7 +16,7 @@
     "cors": "^2.8.4",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
-    "express-winston": "^2.4.0",
+    "express-winston": "^2.5.0",
     "js-yaml": "^3.9.0",
     "monk": "^6.0.1",
     "multer": "^1.3.0",
