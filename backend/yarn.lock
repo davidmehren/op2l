@@ -559,12 +559,13 @@ express-session@^1.15.3:
     uid-safe "~2.1.4"
     utils-merge "1.0.0"
 
-express-winston@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/express-winston/-/express-winston-2.4.0.tgz#27ab6cd93053e2dfdc35bceea14a077dc7d52e49"
+express-winston@^2.5.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/express-winston/-/express-winston-2.6.0.tgz#3e94a8b5934e8971119653ad18f031274e3a2cb7"
+  integrity sha512-m4qvQrrIErAZFMQman8CKnQB8sgVG0dSp/wRFv1ZyoWPpP/6waDZywteAdjMF57uJ5+9O7tkwZb5k9w80ZyvAA==
   dependencies:
     chalk "~0.4.0"
-    lodash "~4.11.1"
+    lodash "~4.17.5"
 
 express@^4.15.3:
   version "4.15.3"
@@ -909,9 +910,10 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash@~4.11.1:
-  version "4.11.2"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.2.tgz#d6b4338b110a58e21dae5cebcfdbbfd2bc4cdb3b"
+lodash@~4.17.5:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 lru-cache@^4.0.1:
   version "4.1.1"
